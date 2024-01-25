@@ -1,0 +1,30 @@
+:root {
+    background-color: whitesmoke;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+}
+
+#header__nav {
+    margin-top: 10px;
+    display: flex;
+    width: 500px;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    border-radius: 20px;
+
+    button {
+        height: 35px;
+        border-radius: 10px;
+    }
+}
