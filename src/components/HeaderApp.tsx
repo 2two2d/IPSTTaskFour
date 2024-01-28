@@ -19,14 +19,16 @@ const HeaderApp = () => {
                     variant={isCurrentPath('/') ? 'contained' : 'outlined'}
                     onClick={() => navigate('/')}
                 >Files</Button>
-                <Button
-                    color={'secondary'}
-                    variant={isCurrentPath('/register') ? 'contained' : 'outlined'}
-                    onClick={() => navigate('/register')}>Register</Button>
-                <Button
-                    color={'secondary'}
-                    variant={isCurrentPath('/authenticate') ? 'contained' : 'outlined'}
-                    onClick={() => navigate('/authenticate')}>Log in</Button>
+                <div id="auth_button_group">
+                    <Button
+                        color={'secondary'}
+                        variant={isCurrentPath('/register') ? 'contained' : 'outlined'}
+                        onClick={() => navigate('/register')}>Register</Button>
+                    <Button
+                        color={'secondary'}
+                        variant={isCurrentPath('/authenticate') ? 'contained' : 'outlined'}
+                        onClick={() => navigate('/authenticate')}>Log in</Button>
+                </div>
             </Box>
         </Box>
     )
