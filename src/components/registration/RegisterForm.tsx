@@ -1,50 +1,54 @@
-import {SubmitHandler, useForm} from "react-hook-form";
-import {Button, TextField} from "@mui/material";
+import {useForm} from "react-hook-form";
+import {Button, Checkbox, TextField, Typography} from "@mui/material";
 import * as React from "react";
 import {TInputs} from "../../types/TFormInputs.ts";
-import {useMutation} from "@tanstack/react-query";
-import {TAuthPayload} from "../../types/TAuth.ts";
-import authService from "../../services/auth.service.ts";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useRegister} from "../../hooks/authHooks/useRegister.ts";
 
 const RegisterForm = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<TInputs>()
+    const navigate = useNavigate()
 
-    const {mutate} = useMutation({
-        mutationKey: ['register'],
-        mutationFn: (data: TAuthPayload) => authService.register(data)
-    })
+    const [checked, setChecked] = useState<boolean>(false)
 
-    const onSubmit: SubmitHandler<TInputs> = (data: TInputs): void => {
-        mutate({login: data.username, password: data.password})
-    }
+    const {register, handleSubmit, formState: {errors}, getValues} = useForm<TInputs>()
+
+    const registerUser = useRegister({login: getValues('username'),
+                                                                         password: getValues('password')},
+                                                                         navigate)
 
     return (
-        <form id="register_form" onSubmit={handleSubmit(onSubmit)}>
+        <form id="register_form" onSubmit={handleSubmit(() => registerUser())}>
             <TextField
                 {...register('username', {required: true})}
                 error={Boolean(errors.username)}
                 color="secondary"
                 sx={{input: {color: "whitesmoke"}}}
                 variant="filled"
-                placeholder="Username"
-                helperText={Boolean(errors.username) && "Username is required!"}>
+                placeholder="Имя пользователя"
+                helperText={Boolean(errors.username) && "Необходимо имя пользователя!"}>
             </TextField>
             <TextField
                 {...register('password', {required: true})}
                 error={Boolean(errors.password)}
-                type="password"
+                type={checked ? 'text': 'password'}
                 color="secondary"
                 sx={{input: {color: "whitesmoke"}}}
                 variant="filled"
-                placeholder="Password"
-                helperText={Boolean(errors.password) && "Password is required!"}>
+                placeholder="Пароль"
+                helperText={Boolean(errors.password) && "Необходим пароль!"}>
             </TextField>
+            <Typography id="show_password">Показать пароль<Checkbox
+                    color="secondary"
+                    onClick={() => setChecked(!checked)}
+                ></Checkbox>
+            </Typography>
             <Button
                 type="submit"
                 onSubmit={(e: React.FormEvent<HTMLButtonElement>)=>e.preventDefault()}
                 color="secondary"
-            >Register</Button>
+            >Зарегистрироваться</Button>
         </form>
     )
 }

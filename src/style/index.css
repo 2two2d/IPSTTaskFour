@@ -35,7 +35,7 @@
     }
 
     #auth_button_group {
-        width: 200px;
+        width: 230px;
         display: flex;
         justify-content: space-between;
 
@@ -56,4 +56,16 @@
     background-color: #0D3B66;
     color: whitesmoke;
     border-radius: 10px;
+
+    #error_message {
+        height: 0;
+        position: relative;
+        font-size: 0.9em;
+        color: indianred;
+    }
+
+    #show_password {
+        color: whitesmoke;
+    }
 }
+

@@ -1,6 +1,5 @@
 const HomeView = () => {
 
-
     return (
         <div>
 

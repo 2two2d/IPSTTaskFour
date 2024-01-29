@@ -10,6 +10,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomeView from "./views/HomeView.tsx";
 import RegistrationView from "./views/RegistrationView.tsx";
 import AuthView from "./views/AuthView.tsx";
+import router from "./routes.tsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,26 +20,7 @@ const queryClient = new QueryClient({
     }
 })
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App/>,
-        children: [
-            {
-                path: "/",
-                element : <HomeView></HomeView>
-            },
-            {
-                path: "/register",
-                element : <RegistrationView></RegistrationView>
-            },
-            {
-                path: "/authenticate",
-                element : <AuthView></AuthView>
-            }
-        ]
-    }
-])
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
