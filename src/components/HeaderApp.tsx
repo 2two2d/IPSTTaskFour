@@ -23,6 +23,7 @@ const HeaderApp = () => {
                 <Button
                     color={'secondary'}
                     variant={isCurrentPath('/') ? 'contained' : 'outlined'}
+                    onClick={() => navigate('/')}
                 >Файлы</Button>
                 <div id="auth_button_group">
                     { authService.getToken() ?

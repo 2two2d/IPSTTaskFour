@@ -69,3 +69,19 @@
     }
 }
 
+#main_board {
+    margin-top: 50px;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+    border-radius: 30px;
+    border: 2px dashed #0D3B66;
+
+    #no_auth_message{
+        font-size: 2em;
+    }
+}
+

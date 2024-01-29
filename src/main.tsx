@@ -1,15 +1,11 @@
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import store from "./store/store.ts";
 import {Provider} from "react-redux";
 import {ThemeProvider} from "@mui/material";
 import customTheme from "./theme/ThemeProvider.ts"
 import './style/index.css'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import HomeView from "./views/HomeView.tsx";
-import RegistrationView from "./views/RegistrationView.tsx";
-import AuthView from "./views/AuthView.tsx";
+import {RouterProvider} from "react-router-dom";
 import router from "./routes.tsx";
 
 const queryClient = new QueryClient({
