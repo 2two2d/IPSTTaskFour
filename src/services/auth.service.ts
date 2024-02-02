@@ -7,14 +7,19 @@ class AuthService {
 
     async register(data: TAuthPayload) {
         return axios.post<TToken>(`${this.URL}/register`, data).then(({data}) => {
-            this.token = data.token
+            this.setToken(data.token)
         })
     }
 
     async login(data: TAuthPayload) {
         return axios.post<TToken>(`${this.URL}/login`, data).then(({data})=>{
-            this.token = data.token
+            this.setToken(data.token)
         })
+    }
+
+    private setToken = (token: string) => {
+        this.token = token
+        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
     }
 
     logout = () => {
@@ -23,6 +28,10 @@ class AuthService {
 
     getToken = () => {
         return this.token
+    }
+
+    getConfig = () => {
+        return {token: this.token}
     }
 
 }

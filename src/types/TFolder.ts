@@ -14,7 +14,7 @@ export type TFolder = {
 }
 
 export type TFolderPayload = {
-    parentId: "root" | string,
+    parentId: string,
     name: string
 }
 

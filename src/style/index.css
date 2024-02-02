@@ -24,7 +24,8 @@
     margin-top: 10px;
     display: flex;
     width: 500px;
-    justify-content: space-around;
+    padding: 0 10px 0 10px;
+    justify-content: space-between;
     align-items: center;
     height: 50px;
     border-radius: 20px;
@@ -37,6 +38,7 @@
     #auth_button_group {
         width: 230px;
         display: flex;
+        align-content: flex-end;
         justify-content: space-between;
 
         button {
@@ -45,7 +47,7 @@
     }
 }
 
-#register_form, #login_form {
+#register_form, #login_form, form {
     margin-top: 100px;
     width: 400px;
     height: 300px;
@@ -82,6 +84,66 @@
 
     #no_auth_message{
         font-size: 2em;
+    }
+
+    #folders_board {
+        width: calc(80vw - 50px);
+        height: calc(80vh - 40px);
+        display: flex;
+
+        .folder {
+            .folder_options {
+                padding: 0 10px 0 10px;
+                width: 200px;
+                height: 40px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: darkgray;
+
+                #modal_window {
+                    width: 100vw;
+                    height: 100vh;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgba(110,110,110, 0.8);
+                    z-index: 10;
+
+                    form {
+                        margin-top: 10px;
+                    }
+                }
+
+                .chip {
+                    display: flex;
+                    align-items: center;
+
+                    input {
+                        width: 50px;
+                    }
+                }
+
+                svg:hover{
+                    fill: #0D3B66;
+                    scale: 115%;
+                }
+            }
+        }
+
+        .sub_folders {
+            margin: 10px 0 10px 40px;
+            width: 200px;
+
+            .sub_folder {
+                display: flex;
+            }
+        }
     }
 }
 

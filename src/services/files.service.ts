@@ -8,7 +8,7 @@ class FilesService {
         return axios.post<TFileResponse>(this.URL, data)
     }
 
-    async deleteFile(id: number) {
+    async deleteFile(id: string) {
         return axios.delete<TFileDeleted>(`${this.URL}/${id}`)
     }
 

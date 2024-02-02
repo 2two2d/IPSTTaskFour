@@ -1,5 +1,6 @@
 import authService from "../services/auth.service.ts";
 import NoAuthMessage from "../components/home/NoAuthMessage.tsx";
+import Folder from "../components/home/Folder.tsx";
 
 const HomeView = () => {
 
@@ -7,8 +8,11 @@ const HomeView = () => {
 
     return (
         <div id="main_board">
-            {token ? <p>123</p>:
-            <NoAuthMessage></NoAuthMessage>}
+            {token ? (
+                <div id="folders_board">
+                    <Folder id={"root"} parentId={''}></Folder>
+                </div>
+            ) : <NoAuthMessage></NoAuthMessage>}
         </div>
     )
 }

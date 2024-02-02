@@ -1,11 +1,12 @@
-import {useQuery} from "@tanstack/react-query";
+import {useMutation} from "@tanstack/react-query";
 import foldersService from "../../services/folders.service.ts";
 import {TFolderPayload} from "../../types/TFolder.ts";
 
-export const useChangeFolder = (id: number, data: TFolderPayload) => {
-    return useQuery({
-        queryKey: ['changeFolder'],
-        queryFn: () => foldersService.changeFolder(id, data),
-        select: ({data}) => data
+export const useChangeFolder = (data: TFolderPayload, id: string)=> {
+    const {mutate: changeFolder} = useMutation({
+        mutationKey: ['changeFolder'],
+        mutationFn: () => foldersService.changeFolder(id, data),
     })
+
+    return changeFolder
 }
