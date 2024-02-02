@@ -1,7 +1,7 @@
 import {ToggleButton, ToggleButtonGroup, Typography} from "@mui/material"
 
 const FormToggle = ({whichForm, handleChangeForm}:
-                        { whichForm: string | null, handleChangeForm }) => {
+                        { whichForm: string | null, handleChangeForm: any }) => {
 
     return (
         <ToggleButtonGroup

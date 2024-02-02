@@ -1,35 +1,37 @@
 import {useForm} from "react-hook-form";
 import {Button, TextField} from "@mui/material";
+import {useAddFile} from "../../../hooks/fileHooks/useAddFile.ts";
+import * as React from "react";
+import {useState} from "react";
 
-const FileForm = () => {
+const FileForm = ({folderId, handleCreated}: { folderId: string, handleCreated: any }) => {
 
     type TInputs = {
         name: string,
         file: string,
     }
 
-    const {register, getValues} = useForm<TInputs>()
+    const {register, watch, handleSubmit} = useForm<TInputs>()
+
+    const file = watch('file')
+
+    const addFile = useAddFile({folderId: folderId, file: file})
 
     const addHandler = (): void => {
-        const file = getValues('file')[0]
-        const form_data = new FormData()
-        form_data.append('image', file, file.name)
-        console.log(form_data)
+        addFile()
+        handleCreated()
     }
 
     return (
-        <form action="">
-            <TextField type="text"
-                       {...register('name', {required: true})}
-                       maxRows={10}
-                       placeholder="Название файла"
-                       variant="filled"
-                       sx={{input: {color: "whitesmoke"}}}/>
+        <form onSubmit={handleSubmit(()=>addHandler())}>
             <TextField type="file"
                        {...register('file', {required: true})}
                        placeholder="Файл"
                        sx={{input: {color: "whitesmoke"}}}/>
-            <Button color="secondary" onClick={() => addHandler()}>Создать файл</Button>
+            <Button
+                color="secondary"
+                type="submit"
+                onSubmit={(e: React.FormEvent<HTMLButtonElement>) => e.preventDefault()}>Создать файл</Button>
         </form>
     )
 }

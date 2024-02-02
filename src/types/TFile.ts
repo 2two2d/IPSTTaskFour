@@ -1,6 +1,6 @@
 export type TFile = {
     folderId: string
-    file: string
+    file: File[]
 }
 
 export type TFileResponse = {

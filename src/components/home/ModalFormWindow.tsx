@@ -5,7 +5,11 @@ import FolderForm from "./forms/FolderForm.tsx";
 import FormToggle from "./forms/FormToggle.tsx";
 import * as React from "react";
 
-const ModalFormWindow = ({folderId, closeModalWindow}: { folderId: string | undefined, closeModalWindow }) => {
+const ModalFormWindow = ({folderId, closeModalWindow, handleCreated}: {
+    folderId: string,
+    closeModalWindow: any,
+    handleCreated: any
+}) => {
 
     const [whichForm, setWhichForm] = useState<string | null>('file')
 
@@ -18,8 +22,14 @@ const ModalFormWindow = ({folderId, closeModalWindow}: { folderId: string | unde
         <Box id="modal_window">
             <FormToggle whichForm={whichForm} handleChangeForm={handleChangeForm}></FormToggle>
             {whichForm === 'file' ?
-                <FileForm/> :
-                <FolderForm folderId={folderId}/>}
+                <FileForm
+                    folderId={folderId}
+                    handleCreated={handleCreated}
+                /> :
+                <FolderForm
+                    folderId={folderId}
+                    handleCreated={handleCreated}
+                />}
             <Button
                 onClick={() => closeModalWindow()}
                 sx={{marginTop: '10px'}}

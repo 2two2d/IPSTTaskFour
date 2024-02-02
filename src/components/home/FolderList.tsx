@@ -9,7 +9,8 @@ const FolderList = ({folder}: {folder: TFolder|undefined}) => {
     return (
         <Box className="sub_folders">
             {folder?.children.map((item)=> {
-                return  <Box className="sub_folder">
+                console.log(item)
+                return  <Box key={item.id} className="sub_folder">
                     <SubdirectoryArrowRight></SubdirectoryArrowRight>
                     {item.type === "folder" ?
                         <Folder key={item.id} id={item.id} parentId={folder.id}></Folder>:

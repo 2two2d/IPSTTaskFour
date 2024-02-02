@@ -21,19 +21,27 @@ const Folder = ({id, parentId = ''}: { id: string, parentId: string }) => {
 
     const [showSubFolders, setShowSubFolders] = useState<boolean>(true)
 
-    return (
+    const handleCreated = () => {
+        setShowFormModalWindow(false)
+        refetch()
+    }
+
+    return ( typeof folder !== 'undefined' &&
         <Box className="folder">
             <Box className="folder_options">
                 <FolderIcon onClick={() => setShowSubFolders(prev => !prev)}></FolderIcon>
                 <CloseIcon onClick={() => setShowDeleteModalWindow(true)}></CloseIcon>
-                <FolderChip folder={folder} refetch={refetch} parentId={parentId}></FolderChip>
+                <FolderChip label={folder.name}></FolderChip>
                 <Add onClick={() => setShowFormModalWindow(true)}></Add>
                 {showFormModalWindow &&
-                    <ModalFormWindow folderId={folder?.id} closeModalWindow={() => setShowFormModalWindow(false)}/>}
+                    <ModalFormWindow
+                        folderId={folder.id}
+                        closeModalWindow={() => setShowFormModalWindow(false)}
+                        handleCreated={() => handleCreated()}/>}
                 {showDeleteModalWindow &&
                     <ModalDeleteWindow folder={folder} closeModalWindow={() => setShowDeleteModalWindow(false)}/>}
             </Box>
-            {Boolean(folder?.children.length) && showSubFolders && <FolderList folder={folder}></FolderList>}
+            {Boolean(folder.children.length) && showSubFolders && <FolderList folder={folder}></FolderList>}
         </Box>
     )
 }
