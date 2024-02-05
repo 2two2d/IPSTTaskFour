@@ -7,10 +7,6 @@ function App() {
 
     const token: string = authService.getToken()
 
-    useEffect(() => {
-        console.log(token)
-    }, [token]);
-
     return (
       <>
         <div id="app">

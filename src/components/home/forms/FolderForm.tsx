@@ -1,7 +1,6 @@
 import {useForm} from "react-hook-form";
 import {Button, TextField} from "@mui/material";
 import {useAddFolder} from "../../../hooks/folderHooks/useAddFolder.ts";
-import * as React from "react";
 
 const FolderForm = ({folderId, handleCreated}: { folderId: string, handleCreated: any }) => {
 
@@ -13,12 +12,13 @@ const FolderForm = ({folderId, handleCreated}: { folderId: string, handleCreated
 
     const name: string = watch('name')
 
-    const addFolder = useAddFolder({parentId: folderId, name: name})
+    const {addFolder, isSuccess} = useAddFolder({parentId: folderId, name: name})
 
     const submit = () => {
         addFolder()
-        handleCreated()
     }
+
+    if (isSuccess) handleCreated()
 
     return (
         <form onSubmit={handleSubmit(() => submit())}>
@@ -32,7 +32,6 @@ const FolderForm = ({folderId, handleCreated}: { folderId: string, handleCreated
                 variant="filled"
                 sx={{input: {color: "whitesmoke"}}}/>
             <Button
-                onSubmit={(e: React.FormEvent<HTMLButtonElement>) => e.preventDefault()}
                 color="secondary"
                 type="submit">Создать папку</Button>
         </form>

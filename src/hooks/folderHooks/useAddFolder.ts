@@ -4,10 +4,10 @@ import foldersService from "../../services/folders.service.ts";
 
 
 export const useAddFolder = (data: TFolderPayload) => {
-    const {mutate: addFolder} = useMutation({
-        mutationKey: ['addFolder'],
+    const {mutate: addFolder, isSuccess} = useMutation({
+        mutationKey: ['addFolder', data],
         mutationFn: () => foldersService.addFolder(data)
     })
 
-    return addFolder
+    return {addFolder, isSuccess}
 }

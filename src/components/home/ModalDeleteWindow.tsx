@@ -2,19 +2,25 @@ import {Box, Button, Typography} from "@mui/material";
 import {TFolder} from "../../types/TFolder.ts";
 import {useDeleteFolder} from "../../hooks/folderHooks/useDeleteFolder.ts";
 
-const ModalDeleteWindow = ({folder, closeModalWindow}: { folder: TFolder | undefined, closeModalWindow: any }) => {
+const ModalDeleteWindow = ({folder, parentId, handleDeleted, closeModalWindow}: {
+    folder: TFolder | undefined,
+    parentId: string,
+    handleDeleted: any,
+    closeModalWindow: any
+}) => {
 
-    const deleteFolder = useDeleteFolder(folder.id)
+    const {deleteFolder, isSuccess} = useDeleteFolder(folder.id, parentId)
 
-    const handleDelete = () => {
+    const handleDeleteFolder = () => {
         deleteFolder()
+        handleDeleted()
     }
 
     return (
         <Box id="modal_window">
             <Typography>Вы уверены, что хотите удалить файл {folder?.name}?</Typography>
             <Button
-                onClick={()=>handleDelete()}
+                onClick={() => handleDeleteFolder()}
                 color="warning"
                 variant="contained"
             >Удалить</Button>

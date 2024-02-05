@@ -4,7 +4,7 @@ import {TFolderPayload} from "../../types/TFolder.ts";
 
 export const useChangeFolder = (data: TFolderPayload, id: string)=> {
     const {mutate: changeFolder} = useMutation({
-        mutationKey: ['changeFolder'],
+        mutationKey: ['changeFolder', id],
         mutationFn: () => foldersService.changeFolder(id, data),
     })
 

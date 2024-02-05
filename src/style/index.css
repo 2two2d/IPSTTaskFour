@@ -94,7 +94,7 @@
         .folder {
             .folder_options {
                 padding: 0 10px 0 10px;
-                width: 200px;
+                width: 250px;
                 height: 40px;
                 border-radius: 10px;
                 display: flex;
@@ -123,10 +123,7 @@
                 .chip {
                     display: flex;
                     align-items: center;
-
-                    input {
-                        width: 50px;
-                    }
+                    width: 100px;
                 }
 
                 svg:hover{

@@ -13,7 +13,6 @@ class FoldersService {
     }
 
     async deleteFolder(id: string) {
-        console.log(id)
         return axios.delete<TFolderDeleted>(`${this.URL}/${id}`)
     }
 

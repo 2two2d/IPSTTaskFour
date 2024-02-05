@@ -3,7 +3,11 @@ import {TAuthPayload ,TToken} from "../types/TAuth.ts";
 
 class AuthService {
     private URL: string = 'http://5.35.93.223:7000/auth'
-    private token: string = ''
+    private token: string = localStorage.getItem('token') || ''
+    
+    constructor() {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
+    }
 
     async register(data: TAuthPayload) {
         return axios.post<TToken>(`${this.URL}/register`, data).then(({data}) => {
@@ -19,11 +23,13 @@ class AuthService {
 
     private setToken = (token: string) => {
         this.token = token
+        localStorage.setItem('token', token)
         axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
     }
 
     logout = () => {
         this.token = ''
+        localStorage.setItem('token', '')
     }
 
     getToken = () => {
