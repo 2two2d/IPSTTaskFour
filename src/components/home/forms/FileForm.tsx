@@ -23,11 +23,12 @@ const FileForm = ({folderId, handleCreated}: { folderId: string, handleCreated: 
     }
 
     return (
-        <form onSubmit={handleSubmit(()=>addHandler())}>
-            <TextField type="file"
-                       {...register('file', {required: true})}
-                       placeholder="Файл"
-                       sx={{input: {color: "whitesmoke"}}}/>
+        <form onSubmit={handleSubmit(() => addHandler())}>
+            <TextField
+                type="file"
+                {...register('file', {required: true})}
+                placeholder="Файл"
+                sx={{input: {color: "whitesmoke"}}}/>
             <Button
                 color="secondary"
                 type="submit"

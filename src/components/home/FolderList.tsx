@@ -4,7 +4,7 @@ import File from "./File.tsx";
 import {TFolder} from "../../types/TFolder.ts";
 import { SubdirectoryArrowRight } from "@mui/icons-material";
 
-const FolderList = ({folder}: {folder: TFolder|undefined}) => {
+const FolderList = ({folder}: {folder: TFolder}) => {
 
     return (
         <Box className="sub_folders">

@@ -6,14 +6,19 @@ class FilesService {
 
     async addFile(data: TFile) {
 
-        // const reader = new FileReader()
-        //
-        // reader.onload = (e) => {
-        //     return axios.post<TFileResponse>(this.URL, {folderId: data.folderId, file: data.file[0]})
-        // }
-        // reader.readAsBinaryString(data.file[0])
+        function objectToFormData(obj: object): FormData {
+            const formData = new FormData();
 
-        return axios.post<TFileResponse>(this.URL, {folderId: data.folderId, file: data.file[0]})
+            Object.entries(obj).forEach((value: any, key: string) => {
+                formData.append(key, value);
+            });
+
+            return formData;
+        }
+
+
+        return axios.post<TFileResponse>(this.URL, {folderId: data.folderId, file: objectToFormData(data)})
+
     }
 
     async deleteFile(id: string) {

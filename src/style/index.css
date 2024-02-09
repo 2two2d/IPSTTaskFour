@@ -9,6 +9,10 @@
     outline: none;
 }
 
+.disabled {
+    display: none;
+}
+
 #app {
     display: flex;
     flex-direction: column;

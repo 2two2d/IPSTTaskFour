@@ -5,6 +5,6 @@ export const useGetFolder = (id: string) => {
     return useQuery({
         queryKey: ['getFolder', id],
         queryFn: () => foldersService.getFolder(id),
-        select: ({data}) => data
+        select: ({data}) => data,
     })
 }

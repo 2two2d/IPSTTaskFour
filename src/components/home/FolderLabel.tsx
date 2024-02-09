@@ -13,7 +13,6 @@ const FolderLabel = ({folder, parentId}: { folder: TFolder | TFolderChild, paren
     const changeFolder = useChangeFolder({name: name || 'undefined', parentId: parentId}, folder.id)
 
     useEffect(() => {
-        console.log(123)
         if (!isEditing && name !== folder.name) changeFolder()
     }, [isEditing]);
 

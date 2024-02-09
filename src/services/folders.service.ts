@@ -9,7 +9,7 @@ class FoldersService {
     }
 
     async changeFolder(id: string, data: TFolderPayload) {
-        return axios.patch<{ data: Omit<TFolder, 'children'> }>(`${this.URL}/${id}`, {name: data.name, id: data.parentId})
+        return axios.patch<{ data: Omit<TFolder, 'children'> }>(`${this.URL}/${id}`, {name: data.name, parentId: data.parentId})
     }
 
     async deleteFolder(id: string) {

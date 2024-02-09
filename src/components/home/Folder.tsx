@@ -9,8 +9,9 @@ import {useGetFolder} from "../../hooks/folderHooks/useGetFolder.ts";
 import FolderList from "./FolderList.tsx";
 import CloseIcon from '@mui/icons-material/Close';
 import ModalDeleteWindow from "./ModalDeleteWindow.tsx";
+import DndProvider from "../../providers/dndProvider.tsx";
 
-const Folder = ({id, parentId = ''}: { id: string, parentId: string }) => {
+const Folder = ({id, parentId}: { id: string, parentId: string }) => {
 
     const {data, refetch} = useGetFolder(id)
     const {refetch: refetchParentFolder} = useGetFolder(parentId || 'root')
@@ -32,29 +33,36 @@ const Folder = ({id, parentId = ''}: { id: string, parentId: string }) => {
         refetchParentFolder()
     }
 
-    return ( typeof folder !== 'undefined' &&
-        <Box className="folder">
-            <Box className="folder_options">
-                <FolderIcon onClick={() => setShowSubFolders(prev => !prev)}></FolderIcon>
-                <CloseIcon onClick={() => setShowDeleteModalWindow(true)}></CloseIcon>
-                <FolderLabel
-                    folder={folder}
-                    parentId={parentId}></FolderLabel>
-                <Add onClick={() => setShowFormModalWindow(true)}></Add>
-                {showFormModalWindow &&
-                    <ModalFormWindow
-                        folderId={folder.id}
-                        closeModalWindow={() => setShowFormModalWindow(false)}
-                        handleCreated={() => handleCreated()}/>}
-                {showDeleteModalWindow &&
-                    <ModalDeleteWindow
+    return (typeof folder !== 'undefined' &&
+        <DndProvider
+            folderId={folder.id}
+            name={folder.name}
+            refetch={() => refetch()}
+            parentFolderId={parentId}
+        >
+            <Box className="folder" id={folder.id}>
+                <Box className="folder_options">
+                    <FolderIcon onClick={() => setShowSubFolders(prev => !prev)}></FolderIcon>
+                    <CloseIcon onClick={() => setShowDeleteModalWindow(true)}></CloseIcon>
+                    <FolderLabel
                         folder={folder}
-                        parentId={parentId}
-                        handleDeleted={() => handleDeleted()}
-                        closeModalWindow={() => setShowDeleteModalWindow(false)}/>}
+                        parentId={parentId}></FolderLabel>
+                    <Add onClick={() => setShowFormModalWindow(true)}></Add>
+                    {showFormModalWindow &&
+                        <ModalFormWindow
+                            folderId={folder.id}
+                            closeModalWindow={() => setShowFormModalWindow(false)}
+                            handleCreated={() => handleCreated()}/>}
+                    {showDeleteModalWindow &&
+                        <ModalDeleteWindow
+                            folder={folder}
+                            parentId={parentId}
+                            handleDeleted={() => handleDeleted()}
+                            closeModalWindow={() => setShowDeleteModalWindow(false)}/>}
+                </Box>
+                {Boolean(folder.children.length) && showSubFolders && <FolderList folder={folder}></FolderList>}
             </Box>
-            {Boolean(folder.children.length) && showSubFolders && <FolderList folder={folder}></FolderList>}
-        </Box>
+        </DndProvider>
     )
 }
 
