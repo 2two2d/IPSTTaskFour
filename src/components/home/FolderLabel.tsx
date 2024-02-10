@@ -10,7 +10,7 @@ const FolderLabel = ({folder, parentId}: { folder: TFolder | TFolderChild, paren
 
     const [name, setName] = useState<string>(folder.name)
 
-    const changeFolder = useChangeFolder({name: name || 'undefined', parentId: parentId}, folder.id)
+    const {changeFolder} = useChangeFolder({name: name || 'undefined', parentId: parentId}, folder.id)
 
     useEffect(() => {
         if (!isEditing && name !== folder.name) changeFolder()
@@ -26,7 +26,6 @@ const FolderLabel = ({folder, parentId}: { folder: TFolder | TFolderChild, paren
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 ></TextField>}
-
         </div>
     )
 }
