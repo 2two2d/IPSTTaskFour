@@ -1,12 +1,13 @@
 import ReactDOM from 'react-dom/client'
-import store from "./store/store.ts";
-import {Provider} from "react-redux";
 import {ThemeProvider} from "@mui/material";
 import customTheme from "./providers/ThemeProvider.ts"
 import './style/index.css'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes.tsx";
+import axios from "axios";
+
+axios.defaults.headers.common['Content-Type'] = "multipart/form-data"
 
 export const queryClient = new QueryClient({
     defaultOptions: {

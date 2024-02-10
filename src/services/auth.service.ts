@@ -4,10 +4,9 @@ import {TAuthPayload ,TToken} from "../types/TAuth.ts";
 class AuthService {
     private URL: string = 'http://5.35.93.223:7000/auth'
     private token: string = sessionStorage.getItem('token') || ''
-    
+
     constructor() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
-
     }
 
     async register(data: TAuthPayload) {

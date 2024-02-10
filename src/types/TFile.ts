@@ -9,6 +9,7 @@ export type TFileResponse = {
         name: string,
         filepath: string
     }
+    type: "file"
 }
 
 export type TFileDeleted = {

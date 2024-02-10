@@ -1,7 +1,6 @@
 import authService from "../services/auth.service.ts";
 import NoAuthMessage from "../components/home/NoAuthMessage.tsx";
 import Folder from "../components/home/Folder.tsx";
-import {useGetFolder} from "../hooks/folderHooks/useGetFolder.ts";
 
 const HomeView = () => {
 

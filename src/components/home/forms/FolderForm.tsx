@@ -14,14 +14,10 @@ const FolderForm = ({folderId, handleCreated}: { folderId: string, handleCreated
 
     const {addFolder, isSuccess} = useAddFolder({parentId: folderId, name: name})
 
-    const submit = () => {
-        addFolder()
-    }
-
     if (isSuccess) handleCreated()
 
     return (
-        <form onSubmit={handleSubmit(() => submit())}>
+        <form onSubmit={handleSubmit(() => addFolder())}>
             <TextField
                 type="text"
                 {...register('name', {required: true})}

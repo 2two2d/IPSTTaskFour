@@ -15,15 +15,12 @@ const FileForm = ({folderId, handleCreated}: { folderId: string, handleCreated: 
 
     const file = watch('file')
 
-    const addFile = useAddFile({folderId: folderId, file: file})
+    const {addFile, isSuccess} = useAddFile({folderId: folderId, file: file})
 
-    const addHandler = (): void => {
-        addFile()
-        handleCreated()
-    }
+    if (isSuccess) handleCreated()
 
     return (
-        <form onSubmit={handleSubmit(() => addHandler())}>
+        <form onSubmit={handleSubmit(() => addFile())} encType={"multipart/form-data"}>
             <TextField
                 type="file"
                 {...register('file', {required: true})}

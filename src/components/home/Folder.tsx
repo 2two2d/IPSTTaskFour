@@ -52,7 +52,8 @@ const Folder = ({id, parentId}: { id: string, parentId: string }) => {
                         <ModalFormWindow
                             folderId={folder.id}
                             closeModalWindow={() => setShowFormModalWindow(false)}
-                            handleCreated={() => handleCreated()}/>}
+                            handleCreated={() => handleCreated()}
+                        />}
                     {showDeleteModalWindow &&
                         <ModalDeleteWindow
                             folder={folder}

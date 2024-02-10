@@ -13,7 +13,7 @@ const FolderList = ({folder}: {folder: TFolder}) => {
                     <SubdirectoryArrowRight></SubdirectoryArrowRight>
                     {item.type === "folder" ?
                         <Folder key={item.id} id={item.id} parentId={folder.id}></Folder>:
-                        <File></File>}
+                        <File key={item.id} file={item}></File>}
                 </Box>
             })}
         </Box>
